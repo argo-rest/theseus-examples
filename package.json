@@ -1,0 +1,25 @@
+{
+  "name": "theseus-examples",
+  "version": "0.1.0",
+  "description": "Example use of the Theseus library",
+  "keywords": [
+    "hypermedia",
+    "api",
+    "client",
+    "argo",
+    "theseus"
+  ],
+  "homepage": "https://github.com/argo-rest/theseus-examples",
+  "author": "Sébastien Cevey <seb@cine7.net>",
+  "license": "Apache-2",
+  "jspm": {
+    "format": "es6",
+    "dependencies": {
+      "any-http-reqwest": "npm:any-http-reqwest@~0.1.0",
+      "theseus": "~0.2.0"
+    }
+  },
+  "devDependencies": {
+    "jspm": "^0.10.6"
+  }
+}
