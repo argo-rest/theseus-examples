@@ -14,9 +14,9 @@ console.log(resource);
 console.log(resource.get());
 resource.getData().then(data => console.log(data), err => console.error(err.stack));
 resource.follow('tags', {query: 'victorian'}).getData().then(print);
-resource.follow('tags').get({query: 'victorian'}).getData().then(print);
+resource.follow('tags').get({query: 'victorian'}).then(print);
 
-// resource.follow('missing').getData().then(data => console.log(data), err => console.error(err.stack));
+resource.follow('missing').getData().then(data => console.log("missing resp", data), err => console.error("missing error", err.stack));
 
 
 var res = client.resource('http://localhost:8000/');
@@ -28,14 +28,17 @@ res.follow('books').post({title: 'Nova', author: 'Samuel L. Delany'}).then(print
 
 var book = res.follow('books').post({title: 'Glasshouse', author: 'Charles Stross'});
 book.then((r) => {
-  r.uri.then(print);
+  print(r.uri);
   r.getData().then(print);
-  r.get().response.
-    then(x => print("GET", x)).
+  r.get().
+    then(x => print("GET book", x)).
     then(() => {
-      return r.delete().response;
+      return r.put({title: 'Accelerando', author: 'Charlie Stross'}).then(z => print("PUT", z));
+    }).
+    then(() => {
+      return r.delete();
     }).then(() => {
-      r.get().response.then(x => print("GET again", x), e => print("book is gone", e));
+      r.get().then(x => print("GET again", x), e => print("book is gone", e));
     });
 });
 
@@ -45,7 +48,7 @@ function* foo() {
   console.log("first");
 
   var book = yield res.follow('books').post({title: 'Glasshouse', author: 'Charles Stross'});
-  print(yield book.uri);
+  print(book.uri);
   var data = yield book.getData();
   print(data);
   yield timeout(1000);
