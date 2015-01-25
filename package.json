@@ -16,7 +16,7 @@
     "format": "es6",
     "dependencies": {
       "any-http-reqwest": "~0.1.0",
-      "theseus": "~0.2.0"
+      "theseus": "~0.3.0"
     }
   },
   "devDependencies": {
