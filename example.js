@@ -19,7 +19,7 @@ resource.follow('tags').get({query: 'victorian'}).then(print);
 resource.follow('missing').getData().then(data => console.log("missing resp", data), err => console.error("missing error", err.stack));
 
 
-var res = client.resource('http://localhost:8000/');
+var res = client.resource('https://argo-demo-server.herokuapp.com');
 res.getData().then(print);
 res.getLinks().then(print, console.error.bind(console));
 res.follow('books').getData().then(print).catch(console.error.bind(console));
